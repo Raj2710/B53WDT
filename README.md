@@ -17,3 +17,14 @@ Steps to convert html to JSX
 2. All self clossing tag should have closing tag eg. <img></img> or <img/>
 3. class should be changed to className
 4. Add the bootstrap cdn link to the head of index.html
+
+
+Steps to Deploy in Netlify
+1. Login to Netlify
+2. Create a new website using github
+3. Select your repository
+4. Select your branch if needed
+5. No changes in the commands
+6. Give Deploy and see the logs
+7. Once completed you can open the url. 
+8. If there is any errors rectify and repeat the process.
