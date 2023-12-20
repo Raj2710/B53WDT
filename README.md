@@ -1,8 +1,15 @@
-# React + Vite
+//Object Destructure
+let data = {
+    firstName:"Mangala",
+    lastName:"Parameshwaran"
+}
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+console.log(data.firstName,data.lastName)
 
-Currently, two official plugins are available:
+const {firstName,lastName} = data
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+console.log(firstName,lastName)
+
+//Array Destructure
+let [a,b,c] = [10,20,30,40,50,60,70,80]
+console.log(a,b,c)
