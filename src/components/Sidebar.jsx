@@ -18,7 +18,12 @@ function Sidebar() {
         <span>Dashboard</span>
     </Link>
 </li>
-
+<li className="nav-item active">
+    <Link to='/add-user' className="nav-link" href="index.html">
+    <i className="fas fa-fw fa-wrench"></i>
+        <span>Add User</span>
+    </Link>
+</li>
 <li className="nav-item active">
     <Link to='/class' className="nav-link" href="index.html">
     <i className="fas fa-fw fa-cog"></i>
