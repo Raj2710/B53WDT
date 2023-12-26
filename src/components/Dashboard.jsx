@@ -79,7 +79,7 @@ function Dashboard({user,setUser}) {
                     </thead>
                     <tbody>
                        {
-                            user.map(e=>{
+                            user.map((e,i)=>{
                                 return <tr key={e.id}>
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
