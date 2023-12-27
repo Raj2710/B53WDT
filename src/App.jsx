@@ -7,6 +7,7 @@ import Querry from './components/Querry'
 import {BrowserRouter,Routes, Route, Navigate} from 'react-router-dom'
 import AddUser from './components/AddUser'
 import EditUser from './components/EditUser'
+import Batch from './components/Batch'
 function App() {
   let [user,setUser] = useState([
     {
@@ -39,9 +40,11 @@ function App() {
         <Route path='/dashboard' element={<Dashboard user={user} setUser={setUser}/>}/>
         <Route path='/add-user' element={<AddUser user={user} setUser={setUser}/>}/>
         <Route path='/edit-user/:id' element={<EditUser user={user} setUser={setUser}/>}/>
-        <Route path='/class' element={<Class/>}/>
-        <Route path='/user' element={<User/>}/>
-        <Route path='/querry' element={<Querry/>}/>
+        <Route path='/batch' element={<Batch/>}>
+            <Route path='user' element={<User/>}/>
+            <Route path='class' element={<Class user={user} setUser={setUser}/>}/>
+            <Route path='query' element={<Querry/>}/>
+        </Route>
         <Route path='*' element={<Navigate to='/dashboard'/>}/>
       </Routes>
     </BrowserRouter>
