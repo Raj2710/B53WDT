@@ -1,40 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Card from './Card'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-function Dashboard({user,setUser}) {
-    
-    let data = [
-        {
-            title:"EARNINGS (MONTHLY)",
-            value:"$45,000",
-            color:'primary',
-            icon:'fa-calendar',
-            isProgress:false
-        },
-        {
-            title:"EARNINGS (ANNUAL)",
-            value:"$215,000",
-            color:'success',
-            icon:'fa-dollar-sign',
-            isProgress:false
-        },
-        {
-            title:"TASKS",
-            value:"20",
-            color:'info',
-            icon:'fa-clipboard-list',
-            isProgress:true
-        },
-        {
-            title:"PENDING REQUEST",
-            value:"18",
-            color:'warning',
-            icon:'fa-comments',
-            isProgress:false
-        }
-    ]
+import { UserContext } from '../utils/UserContextComponent';
+import { DashboardContext } from '../utils/DashboardContextComponent';
+function Dashboard() {
+    let {user,setUser} = useContext(UserContext)
+    let {data} = useContext(DashboardContext)
     let navigate = useNavigate()
 
     let handleDelete = (id)=>{

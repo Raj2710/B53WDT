@@ -8,41 +8,26 @@ import {BrowserRouter,Routes, Route, Navigate} from 'react-router-dom'
 import AddUser from './components/AddUser'
 import EditUser from './components/EditUser'
 import Batch from './components/Batch'
+import UserContextComponent from './utils/UserContextComponent'
+import DashboardContextComponent from './utils/DashboardContextComponent'
 function App() {
-  let [user,setUser] = useState([
-    {
-      id:1,
-      name:"Naga",
-      email:"naga@gmail.com",
-      mobile:"987654321",
-      batch:"B53"
-    },
-    {
-      id:2,
-      name:"Abimani",
-      email:"abimani@gmail.com",
-      mobile:"78987654567",
-      batch:"B53"
-    },
-    {
-      id:3,
-      name:"Amsa",
-      email:"amsa@gmail.com",
-      mobile:"89876543456",
-      batch:"B53"
-    }
-  ])
+
   return <div id="wrapper">
     
     <BrowserRouter>
     <Sidebar/>
       <Routes>
-        <Route path='/dashboard' element={<Dashboard user={user} setUser={setUser}/>}/>
-        <Route path='/add-user' element={<AddUser user={user} setUser={setUser}/>}/>
-        <Route path='/edit-user/:id' element={<EditUser user={user} setUser={setUser}/>}/>
+        <Route path='/dashboard' element={
+        <DashboardContextComponent>
+        <UserContextComponent>
+          <Dashboard/>
+        </UserContextComponent>
+        </DashboardContextComponent>}/>
+        <Route path='/add-user' element={<UserContextComponent><AddUser/></UserContextComponent>}/>
+        <Route path='/edit-user/:id' element={<UserContextComponent><EditUser/></UserContextComponent>}/>
         <Route path='/batch' element={<Batch/>}>
             <Route path='user' element={<User/>}/>
-            <Route path='class' element={<Class user={user} setUser={setUser}/>}/>
+            <Route path='class' element={<Class/>}/>
             <Route path='query' element={<Querry/>}/>
         </Route>
         <Route path='*' element={<Navigate to='/dashboard'/>}/>

@@ -1,9 +1,10 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate,useParams } from 'react-router-dom';
-function EditUser({user,setUser}) {
-
+import { UserContext } from '../utils/UserContextComponent';
+function EditUser() {
+  let {user,setUser} = useContext(UserContext)
   let params = useParams()//this will return a object
 
   let [name,setName] = useState("")
