@@ -1,3 +1,6 @@
+The link https://startbootstrap.com/themes/admin-dashboard is no longer exists so please use this project and setup your code.
+
+
 Router
 1. npm i react-router-dom
 2. Import BrowserRouter,Routes, Route from react-router-dom
