@@ -1,14 +1,15 @@
 import React,{useState,useEffect,useContext} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate,useParams,useLocation } from 'react-router-dom';
 import { UserContext } from '../utils/UserContextComponent';
 function EditUser() {
   let {user,setUser} = useContext(UserContext)
   let params = useParams()//this will return a object
-
+  // let location = useLocation()
+  // console.log(location)
   let [name,setName] = useState("")
-  let [email,setEmail] = useState("")
+  let [email,setEmail] = useState("")          
   let [batch,setBatch] = useState("")
   let [mobile,setMobile] = useState("")
 

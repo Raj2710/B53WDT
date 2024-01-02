@@ -1,7 +1,6 @@
 import React from 'react'
 export const DashboardContext = React.createContext()
 function DashboardContextComponent({children}) {
-    console.log(children)
     let data = [
         {
             title:"EARNINGS (MONTHLY)",

@@ -19,15 +19,27 @@ function Sidebar() {
     </Link>
 </li>
 <li className="nav-item active">
-    <Link to='/add-user' className="nav-link" href="index.html">
+    <Link to='/add-user' className="nav-link">
     <i className="fas fa-fw fa-wrench"></i>
         <span>Add User</span>
     </Link>
 </li>
 <li className="nav-item active">
-    <Link to='/batch' className="nav-link" href="index.html">
+    <Link to='/batch' className="nav-link">
     <i className="fas fas fa-fw fa-cog"></i>
         <span>Batch</span>
+    </Link>
+</li>
+<li className="nav-item active">
+    <Link to='/useref' className="nav-link">
+    <i className="fas fas fa-fw fa-cog"></i>
+        <span>useRef</span>
+    </Link>
+</li>
+<li className="nav-item active">
+    <Link to='/usereducer' className="nav-link">
+    <i className="fas fa-fw fa-wrench"></i>
+        <span>useReducer</span>
     </Link>
 </li>
 

@@ -10,6 +10,8 @@ import EditUser from './components/EditUser'
 import Batch from './components/Batch'
 import UserContextComponent from './utils/UserContextComponent'
 import DashboardContextComponent from './utils/DashboardContextComponent'
+import UseRef from './components/hooks/UseRef'
+import UseReducer from './components/hooks/UseReducer'
 function App() {
 
   return <div id="wrapper">
@@ -30,6 +32,8 @@ function App() {
             <Route path='class' element={<Class/>}/>
             <Route path='query' element={<Querry/>}/>
         </Route>
+        <Route path='/useref' element={<UseRef/>}/>
+        <Route path='/usereducer' element={<UseReducer/>}/>
         <Route path='*' element={<Navigate to='/dashboard'/>}/>
       </Routes>
     </BrowserRouter>
