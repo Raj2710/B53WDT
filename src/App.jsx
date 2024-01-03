@@ -23,8 +23,8 @@ function App() {
           <Dashboard/>
         </UserContextComponent>
         </DashboardContextComponent>}/>
-        <Route path='/add-user' element={<UserContextComponent><AddUser/></UserContextComponent>}/>
-        <Route path='/edit-user/:id' element={<UserContextComponent><EditUser/></UserContextComponent>}/>
+        <Route path='/add-user' element={<AddUser/>}/>
+        <Route path='/edit-user/:id' element={<EditUser/>}/>
         <Route path='/batch' element={<Batch/>}>
             <Route path='user' element={<User/>}/>
             <Route path='class' element={<Class/>}/>
