@@ -1,0 +1,86 @@
+/* home screen */
+body{
+    background-color:rgb(255, 249, 240) !important;
+}
+.cardWrapper{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.homeWrapper{
+    height: 100%;
+    
+}
+.productsCardWrapper{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+.cardWrapper{
+    background-color: white;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.imageContainer{
+    padding: 10px;
+}
+.listImage{
+    width: 100%;
+    height:200px;
+}
+.titleContainer
+{
+    padding: 10px;
+}
+
+/*Product Page*/
+.sectionWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.imageSection{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.contentSection{
+    padding: 10px;
+}
+
+.contentSection>div{
+    margin-top: 30px;
+}
+.prouctImage{
+    margin: auto;
+    width: 400px;
+    height: 400px;
+}
+
+.listImages{
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.minImages{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    cursor: pointer;
+}
+.counter{
+    background-color: #ee4f36;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+p{
+    width: inherit;
+}
+strong{
+    font-size:x-large;
+}
+
