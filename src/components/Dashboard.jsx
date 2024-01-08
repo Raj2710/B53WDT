@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import Card from './Card'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-function Dashboard({user,setUser}) {
-    
+import AxiosService from '../utils/ApiService';
+function Dashboard() {
+    let [user,setUser] = useState([])
     let data = [
         {
             title:"EARNINGS (MONTHLY)",
@@ -37,20 +38,33 @@ function Dashboard({user,setUser}) {
     ]
     let navigate = useNavigate()
 
-    let handleDelete = (id)=>{
-        let index;
-        for(let i = 0;i<user.length;i++)
-        {
-            if(user[i].id==id)
+    let handleDelete = async(id)=>{
+        try {
+            let res = await AxiosService.delete(`/user/${id}`)
+            if(res.status===200)
             {
-                index = i
-                break;
+                getData()
             }
+        } catch (error) {
+            console.log(error)
         }
-        let newArray = [...user]//deep copy or Immutable
-        newArray.splice(index,1)
-        setUser(newArray)
     }
+
+    const getData = async()=>{
+        try {
+            let res = await AxiosService.get('/user')
+            if(res.status===200)
+            {
+                setUser(res.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
   return <>
     <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
@@ -79,7 +93,7 @@ function Dashboard({user,setUser}) {
                     </thead>
                     <tbody>
                        {
-                            user.map((e,i)=>{
+                            user.map((e)=>{
                                 return <tr key={e.id}>
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>

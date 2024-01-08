@@ -2,7 +2,8 @@ import React,{useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-function AddUser({user,setUser}) {
+import AxiosService from '../utils/ApiService';
+function AddUser() {
   let [name,setName] = useState("")
   let [email,setEmail] = useState("")
   let [batch,setBatch] = useState("")
@@ -10,18 +11,28 @@ function AddUser({user,setUser}) {
 
   let navigate = useNavigate()
 
-  const handleCreate = ()=>{
-    let id = user.length?user[user.length-1].id+1 : 1// fetch the last index element.id+1 or if array is empty id will be 1
-    let newArray = [...user]// deep copy Achieve Immutability
-    newArray.push({
-      id,
-      name,
-      email,
-      batch,
-      mobile
-    })
-    setUser(newArray)
-    navigate('/dashboard')
+  const handleCreate = async()=>{
+   try {
+      let res = await AxiosService.post('/user',{
+        name,
+        email,
+        batch,
+        mobile
+        // address:{
+        //   street:"123,Vivekanandha Street",
+        //   area:"Dubai Main Road",
+        //   landmark:"Dubai Bus Stand",
+        //   city:"Dubai"
+        // }
+      })
+      if(res.status===201)
+      {
+        navigate('/dashboard')
+      }
+   } catch (error) {
+      console.log(error)
+   }
+    
   }
 
   return <div id="content-wrapper" className="d-flex flex-column">

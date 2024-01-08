@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate,useParams } from 'react-router-dom';
+import AxiosService from '../utils/ApiService';
 function EditUser({user,setUser}) {
 
   let params = useParams()//this will return a object
@@ -13,37 +14,38 @@ function EditUser({user,setUser}) {
 
   let navigate = useNavigate()// this will return a function
 
-  const findIndex = (id)=>{
-    for(let i = 0; i<user.length;i++)
-    {
-      if(id === user[i].id)
-        return i
+  const handleEdit = async()=>{
+    let {id} = params
+    try {
+      let res = await AxiosService.put(`/user/${id}`,{
+        id,
+        name,
+        email,
+        batch,
+        mobile
+      })
+      if(res.status===200)
+        navigate('/dashboard')
+    } catch (error) {
+      console.log(error)
     }
+    
   }
 
-  const handleEdit = ()=>{
-    let id = Number(params.id)
-    let index = findIndex(id)
-    let newArray = [...user]// deep copy Achieve Immutability
-    newArray.splice(index,1,{
-      id,
-      name,
-      email,
-      batch,
-      mobile
-    })
-    setUser(newArray)
-    navigate('/dashboard')
+  const getUserData = async()=>{
+    let {id} = params
+    try {
+      let res = await AxiosService.get(`/user/${id}`)
+      if(res.status===200)
+      {
+        setName(res.data.name)
+        setEmail(res.data.email)
+        setMobile(res.data.mobile)
+        setBatch(res.data.batch)
+      }
+  } catch (error) {
+      console.log(error)
   }
-
-  const getUserData = ()=>{
-    let id = Number(params.id)
-    let index = findIndex(id)
-  
-    setName(user[index].name)
-    setEmail(user[index].email)
-    setMobile(user[index].mobile)
-    setBatch(user[index].batch)
   }
 
 
