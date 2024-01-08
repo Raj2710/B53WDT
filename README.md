@@ -1,21 +1,12 @@
-1. Create Add user, Edit User and Setup the necessary route
-2. Create a state in App.js and Share it with Add User, Edit User and Dashboard component
-3. Receive the props in each component.
-4. npm install react-bootstrap bootstrap
-5. Include the css file in the main.jsx
-6. In dashboard create a table and display the users - render user data using map
-
-
-Stpes invloved in Git for first time
-1. git init // initializing an empty repo in local
-2. git add . // add all files to your local repo
-3. git commit -m "Message" //message for current commit --> save and its final
-4. git branch -m master // change the branch to master
-5. git remote add origin url // url of cloud repo. Connecting local repo to cloud repo
-6. git push -u origin master//push all the local repo data to cloud repo
-
-
-Steps invloved during non 1st time
-1. git add .//add all changes to local repo
-2. git commit -m "Message" //message for current commit --> save and its final
-3. git push //origin and branch are already known hence direct push to cloud repo
+<!-- IMPLEMENTING FORMIK FOR FORM VALIDATION -->
+1. npm install formik --save  to add formik to react package
+2. npm install yup --save to get some predefined validation 
+3. You can use <Formik/> component or useFormik Hook
+4. create a object formik using useFormik
+5. provide the initial values
+6. provide the onSubmit function
+7. construct validationSchema using Yup
+8. Write the handleChange and handleBlur, id, name, value for each inputs
+9. Write a conditional rendered div element to notify the error using formik error handlers.
+10. Check all the error handlers in form and subit once everything is good.
+11. while editing set  enableReinitialize:true to reinitalise form
