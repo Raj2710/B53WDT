@@ -1,14 +1,13 @@
-1. Setup an empty projects
-2. Plan what you are going to do
-3. Create Necessary Components
-4. Install necessary packages (react-toastify, axios, react-router-dom, bootstrap etc)
-5. Setup Routes for all the components
-6. Kickstart the development of each component
-
-
-<!-- BlogApp Project Ideation -->
-1. Create a blog with Preview option
-2. List all the blogs in Dashboard with CRUD
-3. Approve/Reject blogs from the Dashboard
-4. Approved blogs should be shown as news feed on Home Page
-
+Implementing React Redux
+1. npm install @reduxjs/toolkit react-redux
+2. Creating the Store
+3. Provide the Redux Store to React in main.jsx
+4. Create a Redux State Slice
+    a. Set Name, Initial state
+    b. Define all your reducers
+    c. Export the Actions and Reducer of the State Slice
+5. Import reducer and add it in the store
+6. Install Redux dev tools in chrome as extentions
+7. Use the reducers wherever required in component
+8. Use useSelector to get your state
+9. Use useDispatch to call your actions

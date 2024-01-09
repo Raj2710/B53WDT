@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect} from 'react'
 import Topbar from './Topbar';
 import axios from 'axios';
 import { API_URL } from '../App';
@@ -6,20 +6,20 @@ import { toast } from 'react-toastify';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
+import { saveAllBlogs,deleteBlog,toggleBlog } from '../redux/BlogSlice';
 
 function Dashboard() {
 
   let navigate = useNavigate()
-  let [blogs,setBlogs] = useState([])
+  let dispatch = useDispatch()
+  let blogs = useSelector(state=>state.blogs)
 
   const getBlogs=async()=>{
     try {
       let res = await axios.get(API_URL)
       if(res.status===200)
-      {
-        // toast.success('Blogs fetched Successfully!')
-        setBlogs(res.data)
-      }
+        dispatch(saveAllBlogs(res.data))
     } catch (error) {
         toast.error("Internal Server Error")
     }
@@ -27,6 +27,7 @@ function Dashboard() {
 
   const handleDelete = async(id)=>{
     try {
+      dispatch(deleteBlog(id))
       let res = await axios.delete(`${API_URL}/${id}`)
       if(res.status===200)
       {
@@ -38,11 +39,13 @@ function Dashboard() {
     }
   }
 
-  const toggleBlog = async(e)=>{
+  const toggleBlogById = async(e)=>{
     try {
-      e.status = !e.status
-      console.log(e)
-      let res = await axios.put(`${API_URL}/${e.id}`,e)
+      dispatch(toggleBlog(e.id))
+      let res = await axios.put(`${API_URL}/${e.id}`,{
+        ...e,
+        status:!e.status
+      })
       if(res.status===200)
       {
         toast.success('Blog Status Changed!')
@@ -50,7 +53,7 @@ function Dashboard() {
       }
       
     } catch (error) {
-      
+        console.log(error)
     }
   }
 
@@ -87,7 +90,7 @@ function Dashboard() {
               </td>
               <td>
                 <label className="switch">
-                  <input type="checkbox" defaultChecked={e.status} onChange={()=>toggleBlog(e)}/>
+                  <input type="checkbox" defaultChecked={e.status} onChange={()=>toggleBlogById(e)}/>
                   <span className="slider round"></span>
                 </label>
               </td>
