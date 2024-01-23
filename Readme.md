@@ -10,3 +10,4 @@ Setup an express Project
 9. npm i -g nodemon
 10. run command nodemon on cmd terminal not powershell
 11. Add type as module in pacakage.json to use ES6 import module
+12. add app.use(express.json()) to access body of request
