@@ -2,7 +2,6 @@ import {findIndex} from '../common/helper.js'
 import DB_CONFIG from '../config/dbConfig.js'
 import mongodb,{MongoClient} from 'mongodb'
 
-const user = []
 const client =  new MongoClient(DB_CONFIG.DB_URL)
 
 const getAllUsers = async(req,res)=>{
