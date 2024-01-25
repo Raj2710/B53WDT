@@ -1,14 +1,10 @@
-import {findIndex} from '../common/helper.js'
-import DB_CONFIG from '../config/dbConfig.js'
-import mongodb,{MongoClient} from 'mongodb'
-
-const client =  new MongoClient(DB_CONFIG.DB_URL)
+import UserModel from '../models/user.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const getAllUsers = async(req,res)=>{
-    await client.connect()
     try {
-        const db = await client.db(DB_CONFIG.DB_NAME)
-        let users = await db.collection('users').find().toArray()
+        let users = await UserModel.find()
         res.status(200).send({
             message:"User data fetch successful",
             users
@@ -18,15 +14,10 @@ const getAllUsers = async(req,res)=>{
             message:"Internal Server Error"
         })
     }
-    finally{
-        client.close()
-    }
 }
 const getUserById = async(req,res)=>{
-        await client.connect()
         try {
-            const db = await client.db(DB_CONFIG.DB_NAME)
-            let user = await db.collection('users').findOne({_id:new mongodb.ObjectId(req.params.id)})
+            let user = await UserModel.findById({_id:req.params.id})
             res.status(200).send({
                 message:"User data fetch successful",
                 user
@@ -37,21 +28,16 @@ const getUserById = async(req,res)=>{
                 message:"Internal Server Error"
             })
         }
-        finally{
-            client.close()
-        }
     }
 
 const addUser = async(req,res)=>{
-    await client.connect()
-    try {
-        const db = await client.db(DB_CONFIG.DB_NAME)
+    try { 
         //check if the email exists in db
-        const user = await db.collection('users').findOne({email:req.body.email})
+        const user = await UserModel.findOne({email:req.body.email})
         if(!user)
         {
             //if email not found create the user
-            let newUser = await db.collection('users').insertOne(req.body)
+            let newUser = await UserModel.create(req.body)
             res.status(200).send({
                 message:"User Added Successfully"
             })
@@ -65,22 +51,25 @@ const addUser = async(req,res)=>{
         }    
     } catch (error) {
         res.status(500).send({
-            message:"Internal Server Error"
+            message:"Internal Server Error",
+            error:error.message
         })
-    }
-    finally{
-        client.close()
     }
 }
 
 const editUserById = async(req,res)=>{
-    await client.connect()
         try {
-            const db = await client.db(DB_CONFIG.DB_NAME)
-            let user = await db.collection('users').findOne({_id:new mongodb.ObjectId(req.params.id)})
+            let user = await UserModel.findById({_id:req.params.id})
             if(user)
             {
-                await db.collection('users').updateOne({_id:new mongodb.ObjectId(req.params.id)},{$set:req.body})
+                user.name = req.body.name
+                user.email = req.body.email
+                user.password = req.body.password
+                user.status = req.body.status
+                user.role = req.body.role
+
+                await user.save()
+
                 res.status(200).send({
                     message:"User Edited Successfully"
                 })
@@ -94,22 +83,18 @@ const editUserById = async(req,res)=>{
         } catch (error) {
             console.log(error)
             res.status(500).send({
-                message:"Internal Server Error"
+                message:"Internal Server Error",
+                error:error.message
             })
-        }
-        finally{
-            client.close()
         }
 }
 
 const deleteUserById = async(req,res)=>{
-    await client.connect()
         try {
-            const db = await client.db(DB_CONFIG.DB_NAME)
-            let user = await db.collection('users').findOne({_id:new mongodb.ObjectId(req.params.id)})
+            let user = await UserModel.findById({_id:req.params.id})
             if(user)
             {
-                await db.collection('users').deleteOne({_id:new mongodb.ObjectId(req.params.id)})
+                await UserModel.deleteOne({_id:req.params.id})
                 res.status(200).send({
                     message:"User Deleted Successfully"
                 })
@@ -125,9 +110,6 @@ const deleteUserById = async(req,res)=>{
             res.status(500).send({
                 message:"Internal Server Error"
             })
-        }
-        finally{
-            client.close()
         }
 }
 export default {
