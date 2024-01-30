@@ -2,7 +2,7 @@ import UserModel from "../models/user.js"
 import Auth from '../helper/auth.js'
 const getAllUsers = async(req,res)=>{
     try {
-        let users = await UserModel.find()
+        let users = await UserModel.find({},{password:0})
         res.status(200).send({
             message:"User data fetch successful",
             users
@@ -15,7 +15,7 @@ const getAllUsers = async(req,res)=>{
 }
 const getUserById = async(req,res)=>{
         try {
-            let user = await UserModel.findById({_id:req.params.id})
+            let user = await UserModel.findById({_id:req.params.id},{password:0})
             res.status(200).send({
                 message:"User data fetch successful",
                 user
@@ -81,7 +81,9 @@ const login = async(req,res)=>{
                 })
                 res.status(200).send({
                     message:"Login Successfull",
-                    token
+                    token,
+                    role:user.role,
+                    id:user._id
                 })
             }
             else
