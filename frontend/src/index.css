@@ -1,0 +1,24 @@
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .textAlignCenter{
+    text-align: center;
+  }
+
+  .signin-wrapper{
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 900px){
+    .signin-wrapper{
+        width: 100% !important;
+    }
+}

@@ -73,10 +73,36 @@ const adminGuard = async(req,res,next)=>{
     
 }
 
+const superAdminGuard = async(req,res,next)=>{
+    let token = req?.headers?.authorization?.split(" ")[1]
+    
+    if(token)
+    {
+        let payload = await decodeToken(token)
+        if(payload.role==='super-admin')
+        {
+            next()
+        }
+        else{
+            res.status(402).send({
+                message:"Only Super Admins are allowed"
+            })
+        }
+    }
+    else
+    {
+        res.status(402).send({
+            message:"Unauthorised access"
+        })
+    }
+    
+}
+
 export default {
     createHash,
     hashCompare,
     createToken,
     authenticate,
-    adminGuard
+    adminGuard,
+    superAdminGuard
 }

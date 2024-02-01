@@ -11,7 +11,7 @@ AxiosService.interceptors.request.use(
 
         let token = sessionStorage.getItem('token')
 
-        if(config.headers.authenticate && token )
+        if(config.authenticate && token )
         {
             config.headers.Authorization = `Bearer ${token}`
         }
