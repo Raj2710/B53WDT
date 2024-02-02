@@ -17,8 +17,36 @@
     padding: 10px;
 }
 
+.card-wrapper{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 20px;
+  margin:5px;
+}
+
+.card-outline{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 300px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.card-outline>h2{
+  color: aliceblue;
+}
 @media only screen and (max-width: 900px){
     .signin-wrapper{
         width: 100% !important;
     }
+
+    .card-wrapper{
+      flex-wrap:wrap;
+    }
+
 }

@@ -15,5 +15,17 @@ export const ApiRoutes = {
         path:'/user/create',
         authenticate:true
     },
+    GET_COUNT:{
+        path:'/request/count',
+        authenticate:true
+    },
+    ASSIGN:{
+        path:'/request/assign',
+        authenticate:true
+    },
+    RESOLVE:{
+        path:'/request/resolve',
+        authenticate:true
+    }
 
 }

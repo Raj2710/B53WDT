@@ -10,14 +10,14 @@ const sendEmail = async(to,subject,html)=>{
     }
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     
-    sgMail
-    .send(msg)
-    .then(() => {
-        console.log('Email sent')
-    })
-    .catch((error) => {
-        throw error
-    })
+    // sgMail
+    // .send(msg)
+    // .then(() => {
+    //     console.log('Email sent')
+    // })
+    // .catch((error) => {
+    //     throw error
+    // })
 }
 
 const sendWelcomeEmail = async (email,name,type,title,id)=>{

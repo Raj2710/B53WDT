@@ -6,6 +6,7 @@ import RequestById from "../components/request/RequestById"
 import CreateUser from "../components/admin/CreateUser"
 import User from "../components/admin/User"
 import SuperAdminGuard from "./SuperAdminGuard"
+import AdminRequest from "../components/admin/Request"
 const AppRoutes = [
     {
         path: "/",
@@ -34,6 +35,10 @@ const AppRoutes = [
     {
         path:'/admin/user',
         element:<SuperAdminGuard><User/></SuperAdminGuard>
+    },
+    {
+        path:'/admin/request/:id',
+        element:<AdminRequest/>
     }
 ]
 
